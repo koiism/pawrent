@@ -1,0 +1,52 @@
+:root,
+page {
+  --app-title-color: #1c140d;
+  --app-sub-title-color: #96734f;
+  // card
+  --app-card-bg: ##fffaf2;
+  --app-card-border-color: #f5ede8;
+  --app-card-border-radius: 10px;
+  --app-card-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  --app-bg: #fcfaf7;
+  --nut-button-border-radius: 20px;
+  --nut-primary-color: #f08f0e;
+  --nut-button-primary-color: var(--app-title-color);
+  --nut-button-info-background-color: #f5ede8;
+  --nut-button-info-color: var(--app-title-color);
+  --nut-tabs-titles-background-color: var(--app-bg);
+
+  background-color: var(--app-bg);
+  color: var(--app-sub-title-color);
+  .nut-button {
+    font-weight: bold;
+  }
+  .nut-tab-pane {
+    background-color: var(--app-bg);
+  }
+  .nut-tabs__titles-item__text {
+    color: var(--app-sub-title-color);
+    font-weight: bold;
+  }
+  .active .nut-tabs__titles-item__text {
+    color: var(--app-title-color);
+    font-weight: bold;
+  }
+
+  // 业务样式
+  .icon {
+    height: 28px;
+    width: 28px;
+  }
+  .card {
+    background-color: var(--app-card-bg);
+    border-color: var(--app-card-border-color);
+    border-radius: var(--app-card-border-radius);
+    border-width: 1px;
+    border-style: solid;
+    box-shadow: var(--app-card-box-shadow);
+    color: var(--app-title-color);
+    margin: 5px;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+}

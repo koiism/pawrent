@@ -1,11 +1,15 @@
 <template>
-  <scroll-view class="common-list" :scroll-y="true">
+  <scroll-view class="common-list" :scroll-y="true" @scroll-to-lower="loadMore">
+    <slot name="header"></slot>
     <view class="common-list-container" :style="{ gap: props.gap + 'rpx' }">
       <component
         v-for="(item, index) in items"
         :key="index"
         :is="props.itemComponent"
-        :data="item"
+        :="{
+          data: item,
+          ...$attrs,
+        }"
       ></component>
       <view class="bottom" :class="listId">
         <view v-if="!isLoading && count >= total">已经到底啦!</view>
@@ -16,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { IListResponse } from '@/api/types/commonTypes';
+import { TListResponse } from '@/api/types/commonTypes';
 import { uuid } from '@/utils/crypto';
 import { Current } from '@tarojs/runtime';
 import Taro from '@tarojs/taro';
@@ -29,8 +33,9 @@ import {
 } from 'vue';
 
 interface IProps {
-  dataSetter: () => Promise<IListResponse>;
+  dataSetter: () => Promise<TListResponse>;
   itemComponent: ComponentPublicInstance;
+  attrOverwrite?: Record<string, any>;
   gap?: number;
 }
 interface IItemData extends Record<string, any> {}
@@ -44,19 +49,21 @@ const total = ref(0);
 const count = computed(() => items.value.length);
 const loadMore = async () => {
   if (count.value >= total.value) return;
-  const moreData = (await props.dataSetter()).data;
+  const moreData = (await props.dataSetter()).data || [];
   items.value = [...items.value, ...moreData];
 };
-// 监听触底事件
-Taro.createIntersectionObserver(
-  (getCurrentInstance() as unknown as Current).page!
-)
-  .relativeToViewport({ bottom: 10 })
-  .observe(`.${listId.value}`, (res) => {
-    if (res.intersectionRatio) {
-      loadMore();
-    }
-  });
+const listenLoadMore = () => {
+  // 监听触底事件
+  Taro.createIntersectionObserver(
+    (getCurrentInstance() as unknown as Current).page!
+  )
+    .relativeToViewport({ bottom: 10 })
+    .observe(`.${listId.value}`, (res) => {
+      if (res.intersectionRatio) {
+        loadMore();
+      }
+    });
+};
 const getData = async () => {
   if (isLoading.value) {
     return;
@@ -65,30 +72,38 @@ const getData = async () => {
     isLoading.value = true;
     const response = await props.dataSetter();
     isLoading.value = false;
-    items.value = response.data;
+    items.value = response.data || [];
     total.value = response.total;
   } catch (error) {
     console.error('Error fetching data:', error);
   }
 };
 // 在组件挂载后调用dataSetter获取数据
-onMounted(async () => {
+onMounted(() => {
   getData();
+  listenLoadMore();
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .common-list {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   height: 100%;
+
   &-container {
     display: flex;
     flex-direction: column;
     align-items: stretch;
     width: 100%;
+  }
+
+  .bottom {
+    font-size: 24px;
+    color: var(--app-sub-title-color);
+    text-align: center;
   }
 }
 </style>

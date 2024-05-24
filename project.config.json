@@ -11,5 +11,39 @@
     "postcss": false,
     "minified": false
   },
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "首页-找代管",
+          "pathName": "pages/index/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "首页-接宠单",
+          "pathName": "pages/index/index",
+          "query": "tab=接宠单",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "个人中心",
+          "pathName": "pages/personalCenter/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "我的订单",
+          "pathName": "pages/myOrders/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        }
+      ]
+    }
+  },
   "compileType": "miniprogram"
 }

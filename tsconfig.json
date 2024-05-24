@@ -15,38 +15,20 @@
     "sourceMap": true,
     "baseUrl": ".",
     "paths": {
-      "@/components/*": [
-        "./src/components/*"
-      ],
-      "@/api/*": [
-        "./src/api/*"
-      ],
-      "@/utils/*": [
-        "./src/utils/*"
-      ],
-      "@/mock/*": [
-        "./mock/*"
-      ],
-      "@/package": [
-        "./package.json"
-      ],
-      "@/project": [
-        "./project.config.json"
-      ]
+      "@/components/*": ["./src/components/*"],
+      "@/api/*": ["./src/api/*"],
+      "@/utils/*": ["./src/utils/*"],
+      "@/stores/*": ["./src/stores/*"],
+      "@/mock/*": ["./mock/*"],
+      "@/package": ["./package.json"],
+      "@/project": ["./project.config.json"]
     },
     "rootDir": ".",
     "jsx": "preserve",
     "allowJs": true,
     "resolveJsonModule": true,
-    "typeRoots": [
-      "node_modules/@types"
-    ]
+    "typeRoots": ["node_modules/@types"]
   },
-  "include": [
-    "./src",
-    "./types",
-    "./mock",
-    "components.d.ts"
-  ],
+  "include": ["./src", "./types", "./mock", "components.d.ts"],
   "compileOnSave": false
 }

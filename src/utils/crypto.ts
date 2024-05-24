@@ -2,7 +2,7 @@ export function uuid(): string {
   // 生成16进制的32个字符
   const randomChars = '0123456789abcdef'.split('');
   const uuid: string[] = [];
-  
+
   for (let i = 0; i < 32; i++) {
     // 每次循环随机选择一个16进制字符
     uuid.push(randomChars[Math.floor(Math.random() * 16)]);

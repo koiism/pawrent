@@ -1,7 +1,9 @@
 <template>
   <component
     :is="props.itemComponent"
-    :data="props.data?.[index]"
+    :="{
+      data: props.data?.[index],
+    }"
     :id="props.id"
     :index="props.index"
   ></component>

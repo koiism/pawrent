@@ -23,6 +23,7 @@ const config = {
     '@/components': path.resolve(__dirname, '..', 'src/components'),
     '@/api': path.resolve(__dirname, '..', 'src/api'),
     '@/utils': path.resolve(__dirname, '..', 'src/utils'),
+    '@/stores': path.resolve(__dirname, '..', 'src/stores'),
     '@/mock': path.resolve(__dirname, '..', 'mock'),
     '@/package': path.resolve(__dirname, '..', 'package.json'),
     '@/project': path.resolve(__dirname, '..', 'project.config.json'),
@@ -32,6 +33,7 @@ const config = {
     '@tarojs/plugin-mock',
     '@tarojs/plugin-vue-devtools',
     '@taro-hooks/plugin-vue',
+    '@tarojs/plugin-http',
   ],
   defineConstants: {},
   copy: {
@@ -47,6 +49,9 @@ const config = {
     data: `@import "@nutui/nutui-taro/dist/styles/variables.scss";`,
   },
   mini: {
+    miniCssExtractPluginOption: {
+      ignoreOrder: true,
+    },
     hot: true,
     webpackChain(chain) {
       chain.plugin('unplugin-vue-components').use(
@@ -63,7 +68,7 @@ const config = {
       chain.module
         .rule('vueFiles')
         .test(/\.vue$/)
-        .include.add(path.resolve(__dirname, '../src')) // 要修改的vue文件范围
+        .include.add(path.resolve(__dirname, '../src/components/icons')) // 要修改的vue文件范围
         .end()
         .use('@stellaround/convert-vue-scoped')
         .loader('@stellaround/convert-vue-scoped');

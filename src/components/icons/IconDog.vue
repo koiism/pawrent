@@ -1,4 +1,3 @@
-
 <template>
   <view
     class="icon"
@@ -26,5 +25,3 @@ const props = withDefaults(defineProps<IProps>(), {
   background-repeat: no-repeat;
 }
 </style>
-
-

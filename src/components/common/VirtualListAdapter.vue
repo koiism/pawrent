@@ -22,14 +22,14 @@
 <script setup lang="ts">
 import VirtualListItemAdapter from './VirtualListItemAdapter.vue';
 import { uuid } from '@/utils/crypto';
-import { IListResponse } from '@/api/types/commonTypes';
+import { TListResponse } from '@/api/types/commonTypes';
 import { getCurrentInstance } from '@tarojs/runtime';
 import Taro from '@tarojs/taro';
 import { computed, h, markRaw } from 'vue';
 import { ComponentPublicInstance, onMounted, ref } from 'vue';
 
 interface IProps {
-  dataSetter: () => Promise<IListResponse>;
+  dataSetter: () => Promise<TListResponse>;
   itemComponent: ComponentPublicInstance;
   itemHeight?: number;
 }
@@ -50,11 +50,11 @@ const total = ref(0);
 const count = computed(() => items.value.length);
 const loadMore = async () => {
   if (count.value >= total.value) return;
-  const moreData = (await props.dataSetter()).data;
+  const moreData = (await props.dataSetter()).data || [];
   items.value = [...items.value, ...moreData];
 };
 // 监听触底事件
-Taro.createIntersectionObserver(getCurrentInstance())
+Taro.createIntersectionObserver(getCurrentInstance().page!)
   .relativeToViewport({ bottom: 100 })
   .observe(`.${listId.value}`, (res) => {
     if (res.intersectionRatio) {
@@ -70,7 +70,7 @@ const getData = async () => {
     isLoading.value = true;
     const response = await props.dataSetter();
     isLoading.value = false;
-    items.value = response.data;
+    items.value = response.data || [];
     total.value = response.total;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -81,5 +81,3 @@ onMounted(async () => {
   getData();
 });
 </script>
-
-<style scoped></style>

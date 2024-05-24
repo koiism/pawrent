@@ -3,7 +3,7 @@ page {
   --app-title-color: #1c140d;
   --app-sub-title-color: #96734f;
   // card
-  --app-card-bg: ##fffaf2;
+  --app-card-bg: #fffaf2;
   --app-card-border-color: #f5ede8;
   --app-card-border-radius: 10px;
   --app-card-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
@@ -14,14 +14,18 @@ page {
   --nut-button-info-background-color: #f5ede8;
   --nut-button-info-color: var(--app-title-color);
   --nut-tabs-titles-background-color: var(--app-bg);
+  --nut-tag-default-color: var(--app-title-color);
+  --nut-tag-primary-background-color: var(--nut-button-info-background-color);
 
   background-color: var(--app-bg);
   color: var(--app-sub-title-color);
   .nut-button {
     font-weight: bold;
+    flex: 1;
   }
   .nut-tab-pane {
     background-color: var(--app-bg);
+    padding: 0 40px;
   }
   .nut-tabs__titles-item__text {
     color: var(--app-sub-title-color);
@@ -30,6 +34,9 @@ page {
   .active .nut-tabs__titles-item__text {
     color: var(--app-title-color);
     font-weight: bold;
+  }
+  .nut-dialog__footer {
+    gap: 40px;
   }
 
   // 业务样式

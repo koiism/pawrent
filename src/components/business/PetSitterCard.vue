@@ -1,3 +1,4 @@
+<!-- TODO: 骨架屏 -->
 <template>
   <view class="pet-sitter-card card" :style="{ height: height + 'px' }">
     <view class="pet-sitter-card-title">
@@ -17,18 +18,19 @@
         >接单时间: {{ data.workTime }}</view
       >
       <view class="pet-sitter-card-info-serve">
-        <icon-cat></icon-cat>
-        <icon-dog></icon-dog>
+        <text>服务对象: </text>
+        <view class="pet-sitter-card-info-serve-icons">
+          <icon-cat v-if="data.serveCat"></icon-cat>
+          <icon-dog v-if="data.serveDog"></icon-dog>
+        </view>
       </view>
     </view>
     <view class="pet-sitter-card-btn">
-      <nut-button type="info" shape="circle" size="small">服务详情</nut-button>
-      <nut-button
-        type="primary"
-        shape="circle"
-        size="small"
-        @click="requestWechat"
-        >获取微信</nut-button
+      <button-show-detail :wechat-id="data.wechatId" :content="data.detail"
+        >服务详情</button-show-detail
+      >
+      <button-request-wechat :wechat-id="data.wechatId"
+        >获取微信</button-request-wechat
       >
     </view>
   </view>
@@ -36,22 +38,15 @@
 
 <script setup lang="ts">
 import { SEX } from '@/api/types/commonTypes';
-import { TPetSitter } from '@/api/types/getPetSitters';
-import Taro from '@tarojs/taro';
+import { TPetSitter } from '@/api/types/commonTypes';
+import ButtonRequestWechat from './ButtonRequestWechat.vue';
+import ButtonShowDetail from './ButtonShowDetail.vue';
 
 interface IPropsPetSitterCard {
   data: TPetSitter;
 }
 const props = defineProps<IPropsPetSitterCard>();
 const { data } = props;
-const requestWechat = () => {
-  Taro.setClipboardData({
-    data: data.weChatId,
-    fail: (res) => {
-      console.log(res);
-    },
-  });
-};
 const height = 100;
 
 defineOptions({
@@ -64,46 +59,61 @@ defineOptions({
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
   &-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     &-sitter {
       display: flex;
       gap: 10px;
       font-size: 28px;
+
       &-name {
         font-weight: bold;
       }
+
       &-sex {
         display: flex;
         align-items: center;
       }
     }
+
     &-distance {
       font-size: 24px;
     }
   }
+
   &-info {
     display: flex;
     justify-content: space-between;
+
     &-time {
       font-size: 24px;
       color: var(--app-sub-title-color);
     }
+
     &-serve {
+      font-size: 24px;
+      color: var(--app-sub-title-color);
       display: flex;
       align-items: center;
       gap: 20px;
+
+      &-icons {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 80px;
+      }
     }
   }
+
   &-btn {
     display: flex;
     justify-content: space-between;
     gap: 20px;
-    .nut-button {
-      flex: 1;
-    }
   }
 }
 </style>

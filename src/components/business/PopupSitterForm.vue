@@ -13,6 +13,14 @@
         star-position="right"
         :rules="formRules"
       >
+        <nut-form-item label="是否接单" prop="status">
+          <template #label>
+            <view class="popup-sitter-form-content-label">是否接单</view>
+          </template>
+          <custom-wrapper>
+            <nut-switch v-model="formData.status" />
+          </custom-wrapper>
+        </nut-form-item>
         <nut-form-item label="姓名" prop="name" required>
           <custom-wrapper>
             <nut-input
@@ -122,6 +130,7 @@ const formData = ref<IPostSitterInfoParams>(
     workTime: '',
     wechatId: '',
     detail: '',
+    status: true,
   }
 );
 const serveDogValidator = (value: boolean) => {
@@ -174,6 +183,11 @@ const submit = () => {
     overflow-y: auto;
     margin: 0 -20px;
     padding: 0 20px;
+    &-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
   }
   &-buttons {
     display: flex;

@@ -26,8 +26,11 @@ import { ref } from 'vue';
 const orderFormVisible = ref(false);
 const editedOrderData = ref<TPetOrder | undefined>();
 
-const dataSetter = async () => {
-  const petOrders = await getMyOrders();
+const dataSetter = async (offset: number) => {
+  const petOrders = await getMyOrders({
+    offset,
+    limit: 20,
+  });
   return petOrders;
 };
 const gap = 20;

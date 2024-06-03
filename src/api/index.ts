@@ -15,6 +15,7 @@ import {
 } from './types/postPetOrder';
 import { IMyOrdersResponse } from './types/getMyOrders';
 import { useUserStore } from '@/stores/user';
+import { TPagination } from './types/commonTypes';
 
 // 获取用户id
 let getUserIdPromise: Promise<IUserIdResponse> | null = null;
@@ -35,29 +36,38 @@ export const getUserId = async (code: string) => {
 };
 
 // 获取代管订单列表
-export const getPetOrders = async () => {
+export const getPetOrders = async (
+  pagination: TPagination = { offset: 0, limit: 20 }
+) => {
   const locationStore = useLocationStore();
   await locationStore.initLocation();
   return await request.get<IPetOrdersResponse, IPetOrdersResponse>(
-    '/api/pet-orders'
+    '/api/pet-orders',
+    { params: { ...pagination } }
   );
 };
 
 // 获取我的订单
-export const getMyOrders = async () => {
+export const getMyOrders = async (
+  pagination: TPagination = { offset: 0, limit: 20 }
+) => {
   const userStore = useUserStore();
   await userStore.initUserId();
   return await request.get<IMyOrdersResponse, IMyOrdersResponse>(
-    '/api/my-orders'
+    '/api/my-orders',
+    { params: { ...pagination } }
   );
 };
 
 // 获取代管人列表
-export const getPetSitters = async () => {
+export const getPetSitters = async (
+  pagination: TPagination = { offset: 0, limit: 20 }
+) => {
   const locationStore = useLocationStore();
   await locationStore.initLocation();
   return await request.get<IPetSittersResponse, IPetSittersResponse>(
-    '/api/pet-sitters'
+    '/api/pet-sitters',
+    { params: { ...pagination } }
   );
 };
 

@@ -10,11 +10,14 @@
   </common-list>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { getPetOrders } from '@/api/index';
 import PetOrderCard from '@/components/business/PetOrderCard.vue';
-const dataSetter = async () => {
-  const petOrders = await getPetOrders();
+const dataSetter = async (offset: number) => {
+  const petOrders = await getPetOrders({
+    offset,
+    limit: 20,
+  });
   return petOrders;
 };
 const gap = 20;

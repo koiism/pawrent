@@ -32,6 +32,7 @@ export type TPetSitter = {
   wechatId: string;
   detail: string;
   distance?: string;
+  status: boolean; // true: 在线 false: 离线
 };
 
 export type TPetOrder = {
@@ -43,4 +44,9 @@ export type TPetOrder = {
   tags: string[];
   wechatId: string;
   distance?: string;
+};
+
+export type TPagination = {
+  offset: number;
+  limit: number;
 };

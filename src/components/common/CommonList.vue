@@ -33,7 +33,7 @@ import {
 } from 'vue';
 
 interface IProps {
-  dataSetter: () => Promise<TListResponse>;
+  dataSetter: (offset: number) => Promise<TListResponse>;
   itemComponent: ComponentPublicInstance;
   attrOverwrite?: Record<string, any>;
   gap?: number;
@@ -49,7 +49,7 @@ const total = ref(0);
 const count = computed(() => items.value.length);
 const loadMore = async () => {
   if (count.value >= total.value) return;
-  const moreData = (await props.dataSetter()).data || [];
+  const moreData = (await props.dataSetter(count.value)).data || [];
   items.value = [...items.value, ...moreData];
 };
 const listenLoadMore = () => {
@@ -70,7 +70,7 @@ const getData = async () => {
   }
   try {
     isLoading.value = true;
-    const response = await props.dataSetter();
+    const response = await props.dataSetter(0);
     isLoading.value = false;
     items.value = response.data || [];
     total.value = response.total;

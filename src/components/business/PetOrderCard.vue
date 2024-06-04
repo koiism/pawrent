@@ -7,7 +7,7 @@
           >{{ data.location.name }}
         </view>
       </view>
-      <view class="pet-order-card-title-distance"
+      <view class="pet-order-card-title-distance" v-if="data.distance"
         >距离您: {{ data.distance }} km</view
       >
     </view>

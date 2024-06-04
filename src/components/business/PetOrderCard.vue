@@ -78,18 +78,18 @@ defineOptions({
       display: flex;
       gap: 10px;
       font-size: 28px;
+      min-width: 0;
 
       &-name {
         font-weight: bold;
-      }
-
-      &-sex {
-        display: flex;
-        align-items: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
 
     &-distance {
+      flex: none;
       font-size: 24px;
     }
   }
@@ -99,11 +99,15 @@ defineOptions({
     justify-content: space-between;
 
     &-time {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       font-size: 24px;
       color: var(--app-sub-title-color);
     }
 
     &-serve {
+      flex: none;
       display: flex;
       align-items: center;
       gap: 20px;

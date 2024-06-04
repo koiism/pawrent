@@ -143,7 +143,9 @@ const formRules = ref({
   name: [{ required: true, message: '请输入姓名' }],
   wechatId: [{ required: true, message: '请输入微信id' }],
   location: [{ message: '请选择常驻位置', validator: locationValidator }],
-  serveDog: [{ message: '请至少选择一个服务对象', validator: serveDogValidator }],
+  serveDog: [
+    { message: '请至少选择一个服务对象', validator: serveDogValidator },
+  ],
   workTime: [{ required: true, message: '请输入服务时间' }],
   detail: [{ required: true, message: '请输入备注' }],
 });

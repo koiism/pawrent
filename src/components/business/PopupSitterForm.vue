@@ -74,6 +74,8 @@
         <nut-form-item label="备注" prop="detail" required>
           <custom-wrapper>
             <nut-textarea
+              limit-show
+              :max-length="500"
               v-model="formData.detail"
               placeholder="请明确表述服务细节，包括收费标准、注意事项等"
               type="text"

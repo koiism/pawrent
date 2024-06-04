@@ -14,11 +14,11 @@
       ></pet-order-card>
     </template>
     <template #header>
-      <button-add-order></button-add-order>
+      <button-add-order @complete-edit="onCompleteAdd"></button-add-order>
       <popup-order-form
         v-model:visible="orderFormVisible"
         v-model:data="editedOrderData"
-        @complete-edit="onEditComplete"
+        @complete-edit="onCompleteEdit"
       ></popup-order-form>
     </template>
   </common-list>
@@ -46,13 +46,18 @@ const onEdit = (data: TPetOrder) => {
   editedOrderData.value = Object.assign({}, data);
   orderFormVisible.value = true;
 };
-const onEditComplete = (id, data) => {
+const onCompleteEdit = (id, data) => {
   myOrderList.value = myOrderList.value.map((item) => {
     if (item.id === id) {
       return data;
     }
     return item;
   });
+};
+const onCompleteAdd = (id, data) => {
+  if (id) {
+    myOrderList.value.unshift(data);
+  }
 };
 </script>
 

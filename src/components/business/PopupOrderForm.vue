@@ -70,6 +70,23 @@
   </nut-popup>
 </template>
 
+<script lang="ts">
+const locationStore = useLocationStore();
+const { location } = storeToRefs(locationStore);
+export const defaultOrderData = {
+  location: {
+    name: '',
+    latitude: location.value.latitude,
+    longitude: location.value.longitude,
+  },
+  catNum: 0,
+  dogNum: 0,
+  orderTime: '',
+  tags: [],
+  wechatId: '',
+};
+</script>
+
 <script setup lang="ts">
 import { postPetOrder } from '@/api/index';
 import { TPetOrder } from '@/api/types/commonTypes';
@@ -78,34 +95,15 @@ import { Form as NutForm } from '@nutui/nutui-taro';
 import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
 import { locationValidator } from '../common/LocationSelector.vue';
-import { effect } from 'vue';
 
 const visible = defineModel<boolean>('visible', {
   required: true,
 });
-const data = defineModel<TPetOrder>('data', {
-  required: false,
+const formData = defineModel<TPetOrder>('data', {
+  required: true,
+  default: defaultOrderData,
 });
 const formRef = ref<InstanceType<typeof NutForm> | null>(null);
-const locationStore = useLocationStore();
-const { location } = storeToRefs(locationStore);
-const formData = ref<TPetOrder>(
-  data.value ?? {
-    location: {
-      name: '',
-      latitude: location.value.latitude,
-      longitude: location.value.longitude,
-    },
-    catNum: 0,
-    dogNum: 0,
-    orderTime: '',
-    tags: [],
-    wechatId: '',
-  }
-);
-effect(() => {
-  formData.value = data.value ?? formData.value;
-});
 const petNumValidator = () => {
   if (!formData.value.dogNum && !formData.value.catNum) {
     return false;

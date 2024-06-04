@@ -25,6 +25,7 @@ declare module 'vue' {
     NutCellGroup: typeof import('@nutui/nutui-taro')['CellGroup']
     NutCheckbox: typeof import('@nutui/nutui-taro')['Checkbox']
     NutDialog: typeof import('@nutui/nutui-taro')['Dialog']
+    NutForm: typeof import('@nutui/nutui-taro')['Form']
     NutFormItem: typeof import('@nutui/nutui-taro')['FormItem']
     NutInput: typeof import('@nutui/nutui-taro')['Input']
     NutInputNumber: typeof import('@nutui/nutui-taro')['InputNumber']

@@ -41,12 +41,13 @@ import { SEX } from '@/api/types/commonTypes';
 import { TPetSitter } from '@/api/types/commonTypes';
 import ButtonRequestWechat from './ButtonRequestWechat.vue';
 import ButtonShowDetail from './ButtonShowDetail.vue';
+import { toRefs } from 'vue';
 
 interface IPropsPetSitterCard {
   data: TPetSitter;
 }
 const props = defineProps<IPropsPetSitterCard>();
-const { data } = props;
+const { data } = toRefs(props);
 const height = 100;
 
 defineOptions({

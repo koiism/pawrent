@@ -114,8 +114,8 @@ const petNumValidator = () => {
 };
 const formRules = ref({
   location: [{ message: '请选择宠物位置', validator: locationValidator }],
-  catNum: [{ message: '至少选择一个宠物', validator: petNumValidator }],
-  dogNum: [{ message: '至少选择一个宠物', validator: petNumValidator }],
+  catNum: [{ message: '请至少选择一个宠物', validator: petNumValidator }],
+  dogNum: [{ message: '请至少选择一个宠物', validator: petNumValidator }],
   orderTime: [{ required: true, message: '请输入代管时间' }],
   wechatId: [{ required: true, message: '请输入微信id' }],
 });

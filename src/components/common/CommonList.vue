@@ -2,15 +2,9 @@
   <scroll-view class="common-list" :scroll-y="true" @scroll-to-lower="loadMore">
     <slot name="header"></slot>
     <view class="common-list-container" :style="{ gap: props.gap + 'rpx' }">
-      <component
-        v-for="(item, index) in items"
-        :key="index"
-        :is="props.itemComponent"
-        :="{
-          data: item,
-          ...$attrs,
-        }"
-      ></component>
+      <view v-for="(item, index) in items" :key="index">
+        <slot :data="item" :attr="$attrs" />
+      </view>
       <view class="bottom" :class="listId">
         <view v-if="!isLoading && count >= total">已经到底啦!</view>
         <view v-else="isLoading">加载中……</view>
@@ -24,25 +18,30 @@ import { TListResponse } from '@/api/types/commonTypes';
 import { uuid } from '@/utils/crypto';
 import { Current } from '@tarojs/runtime';
 import Taro from '@tarojs/taro';
-import {
-  ComponentPublicInstance,
-  computed,
-  getCurrentInstance,
-  onMounted,
-  ref,
-} from 'vue';
+import { watch } from 'vue';
+import { computed, getCurrentInstance, onMounted, ref } from 'vue';
 
 interface IProps {
   dataSetter: (offset: number) => Promise<TListResponse>;
-  itemComponent: ComponentPublicInstance;
+  items: IItemData[];
   attrOverwrite?: Record<string, any>;
   gap?: number;
 }
 interface IItemData extends Record<string, any> {}
 const props = withDefaults(defineProps<IProps>(), {
   gap: 20,
+  items: () => [],
 });
-const items = ref<IItemData[]>([]);
+const items = defineModel<IItemData[]>({
+  default: () => [],
+});
+
+watch(props.items, () => {
+  console.log(`props.items`, props.items);
+});
+watch(items, () => {
+  console.log(`items`, items);
+});
 const listId = ref(`bottom-${uuid()}`);
 const isLoading = ref(false);
 const total = ref(0);

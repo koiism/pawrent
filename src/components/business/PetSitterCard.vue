@@ -10,7 +10,7 @@
         </view>
       </view>
       <view class="pet-sitter-card-title-distance"
-        >距离您: {{ data.distance }}</view
+        >距离您: {{ data.distance }} km</view
       >
     </view>
     <view class="pet-sitter-card-info">

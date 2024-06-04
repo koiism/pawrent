@@ -1,9 +1,8 @@
 <template>
-  <common-list
-    :item-component="PetSitterCard"
-    :data-setter="dataSetter"
-    :gap="gap"
-  >
+  <common-list :data-setter="dataSetter" :gap="gap">
+    <template v-slot="item">
+      <pet-sitter-card :data="item.data"></pet-sitter-card>
+    </template>
     <template #header>
       <button-become-sitter></button-become-sitter>
     </template>
@@ -12,7 +11,6 @@
 
 <script setup lang="ts">
 import { getPetSitters } from '@/api/index';
-import PetSitterCard from '@/components/business/PetSitterCard.vue';
 const dataSetter = async (offset: number) => {
   const petSitters = await getPetSitters({
     offset,

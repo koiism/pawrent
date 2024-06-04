@@ -20,9 +20,6 @@
               <icon-female v-else="data.sex === SEX.FEMALE"></icon-female>
             </view>
           </view>
-          <view class="button-become-sitter-title-distance"
-            >距离您: {{ sitterInfo?.distance ?? '0km' }}</view
-          >
         </view>
         <view class="button-become-sitter-info">
           <view class="button-become-sitter-info-time"

@@ -8,7 +8,7 @@
         </view>
       </view>
       <view class="pet-order-card-title-distance"
-        >距离您: {{ data.distance }}</view
+        >距离您: {{ data.distance }} km</view
       >
     </view>
     <view class="pet-order-card-info">
@@ -46,6 +46,7 @@
 
 <script setup lang="ts">
 import { TPetOrder } from '@/api/types/commonTypes';
+import { toRefs } from 'vue';
 
 const emit = defineEmits(['edit']);
 
@@ -54,7 +55,7 @@ interface IPropsPetOrderCard {
   allowEdit?: boolean;
 }
 const props = defineProps<IPropsPetOrderCard>();
-const { data, allowEdit } = props;
+const { data, allowEdit } = toRefs(props);
 const height = 120;
 
 defineOptions({

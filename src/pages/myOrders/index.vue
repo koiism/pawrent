@@ -1,17 +1,24 @@
 <template>
   <common-list
     class="my-order"
-    :item-component="PetOrderCard"
+    v-model="myOrderList"
+    :items="myOrderList"
     :data-setter="dataSetter"
     :gap="gap"
-    allow-edit
-    @edit="onEdit"
   >
+    <template v-slot="item">
+      <pet-order-card
+        :data="item.data"
+        allow-edit
+        @edit="onEdit"
+      ></pet-order-card>
+    </template>
     <template #header>
       <button-add-order></button-add-order>
       <popup-order-form
         v-model:visible="orderFormVisible"
         v-model:data="editedOrderData"
+        @complete-edit="onEditComplete"
       ></popup-order-form>
     </template>
   </common-list>
@@ -20,8 +27,9 @@
 <script setup lang="ts">
 import { getMyOrders } from '@/api/index';
 import { TPetOrder } from '@/api/types/commonTypes';
-import PetOrderCard from '@/components/business/PetOrderCard.vue';
 import { ref } from 'vue';
+
+const myOrderList = ref<TPetOrder[]>([]);
 
 const orderFormVisible = ref(false);
 const editedOrderData = ref<TPetOrder | undefined>();
@@ -35,8 +43,16 @@ const dataSetter = async (offset: number) => {
 };
 const gap = 20;
 const onEdit = (data: TPetOrder) => {
-  editedOrderData.value = data;
+  editedOrderData.value = Object.assign({}, data);
   orderFormVisible.value = true;
+};
+const onEditComplete = (id, data) => {
+  myOrderList.value = myOrderList.value.map((item) => {
+    if (item.id === id) {
+      return data;
+    }
+    return item;
+  });
 };
 </script>
 

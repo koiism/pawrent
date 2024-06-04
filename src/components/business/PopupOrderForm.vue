@@ -19,10 +19,18 @@
           </location-selector>
         </nut-form-item>
         <nut-form-item label="猫的数量" prop="catNum">
-          <nut-input-number v-model="formData.catNum" :min="0" :max="9" />
+          <nut-input-number
+            v-model.number="formData.catNum"
+            :min="0"
+            :max="9"
+          />
         </nut-form-item>
         <nut-form-item label="狗的数量" prop="dogNum">
-          <nut-input-number v-model="formData.dogNum" :min="0" :max="9" />
+          <nut-input-number
+            v-model.number="formData.dogNum"
+            :min="0"
+            :max="9"
+          />
         </nut-form-item>
         <nut-form-item label="代管时间" prop="orderTime" required>
           <custom-wrapper>
@@ -68,8 +76,9 @@ import { TPetOrder } from '@/api/types/commonTypes';
 import { useLocationStore } from '@/stores/location';
 import { Form as NutForm } from '@nutui/nutui-taro';
 import { storeToRefs } from 'pinia';
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
 import { locationValidator } from '../common/LocationSelector.vue';
+import { effect } from 'vue';
 
 const visible = defineModel<boolean>('visible', {
   required: true,
@@ -94,7 +103,7 @@ const formData = ref<TPetOrder>(
     wechatId: '',
   }
 );
-watch(data, () => {
+effect(() => {
   formData.value = data.value ?? formData.value;
 });
 const petNumValidator = () => {
@@ -111,15 +120,20 @@ const formRules = ref({
   wechatId: [{ required: true, message: '请输入微信id' }],
 });
 
+const emit = defineEmits<{
+  completeEdit: [id: number, data: TPetOrder];
+}>();
+
 const submit = () => {
   formRef.value?.validate().then(async ({ valid, errors }) => {
     if (valid) {
       const result = await postPetOrder(formData.value);
       if (result?.data?.id) {
         visible.value = false;
+        emit('completeEdit', result.data.id, formData.value);
       }
     } else {
-      console.warn('error:', errors);
+      console.error('error:', errors);
     }
   });
 };

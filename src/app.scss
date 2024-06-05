@@ -3,7 +3,7 @@ page {
   --app-title-color: #1c140d;
   --app-sub-title-color: #96734f;
   // card
-  --app-card-bg: #fffaf2;
+  --app-card-bg: #ffffff;
   --app-card-border-color: #f5ede8;
   --app-card-border-radius: 10px;
   --app-card-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
@@ -14,6 +14,8 @@ page {
   --nut-button-info-background-color: #f5ede8;
   --nut-button-info-color: var(--app-title-color);
   --nut-tabs-titles-background-color: var(--app-bg);
+  --nut-tabs-horizontal-tab-line-color: var(--app-sub-title-color);
+  --nut-tabs-horizontal-titles-item-active-line-width: 90%;
   --nut-tag-default-color: var(--app-title-color);
   --nut-tag-primary-background-color: var(--nut-button-info-background-color);
 
@@ -25,14 +27,14 @@ page {
   }
   .nut-tab-pane {
     background-color: var(--app-bg);
-    padding: 0 40px;
+    padding: 0;
   }
   .nut-tabs__titles-item__text {
-    color: var(--app-sub-title-color);
+    color: var(--app-title-color);
     font-weight: bold;
   }
   .active .nut-tabs__titles-item__text {
-    color: var(--app-title-color);
+    color: var(--app-sub-title-color);
     font-weight: bold;
   }
   .nut-dialog__footer {

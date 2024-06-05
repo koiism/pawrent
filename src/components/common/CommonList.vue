@@ -1,7 +1,7 @@
 <template>
   <scroll-view class="common-list" :scroll-y="true" @scroll-to-lower="loadMore">
     <slot name="header"></slot>
-    <view class="common-list-container" :style="{ gap: props.gap + 'rpx' }">
+    <view class="common-list-container">
       <view v-for="(item, index) in items" :key="index">
         <slot :data="item" :attr="$attrs" />
       </view>
@@ -23,22 +23,17 @@ import { computed, getCurrentInstance, onMounted, ref } from 'vue';
 
 interface IProps {
   dataSetter: (offset: number) => Promise<TListResponse>;
-  items: IItemData[];
   attrOverwrite?: Record<string, any>;
   gap?: number;
 }
 interface IItemData extends Record<string, any> {}
 const props = withDefaults(defineProps<IProps>(), {
   gap: 20,
-  items: () => [],
 });
 const items = defineModel<IItemData[]>({
   default: () => [],
 });
 
-watch(props.items, () => {
-  console.log(`props.items`, props.items);
-});
 watch(items, () => {
   console.log(`items`, items);
 });
@@ -82,6 +77,7 @@ onMounted(() => {
   getData();
   listenLoadMore();
 });
+const gap = computed(() => `${props.gap}rpx`);
 </script>
 
 <style lang="scss">
@@ -97,6 +93,8 @@ onMounted(() => {
     flex-direction: column;
     align-items: stretch;
     width: 100%;
+    margin-top: v-bind(gap);
+    gap: v-bind(gap);
   }
 
   .bottom {

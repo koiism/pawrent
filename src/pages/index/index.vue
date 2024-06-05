@@ -74,6 +74,7 @@ useShareAppMessage((_res) => ({
 
 .index-container {
   height: 100vh;
+  padding: 0 32px;
 }
 
 .tabs {

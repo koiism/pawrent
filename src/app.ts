@@ -1,5 +1,6 @@
 import { createApp } from 'vue';
 import './app.scss';
+import '@nutui/nutui-taro/dist/packages/cellgroup/index.scss'
 import { Tabs, TabPane, Tag } from '@nutui/nutui-taro';
 import registerVirtualList from '@tarojs/components-advanced/dist/components/virtual-list';
 import { createPinia } from 'pinia';

@@ -57,10 +57,10 @@
           </nut-form-item>
           <nut-form-item label="服务对象" prop="serveDog" required>
             <nut-checkbox v-model="formData.serveCat" shape="button">
-              <icon-cat size="36"></icon-cat>
+              <icon-cat :size="36"></icon-cat>
             </nut-checkbox>
             <nut-checkbox v-model="formData.serveDog" shape="button">
-              <icon-dog size="36"></icon-dog>
+              <icon-dog :size="36"></icon-dog>
             </nut-checkbox>
           </nut-form-item>
           <nut-form-item label="服务时间" prop="workTime" required>

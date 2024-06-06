@@ -1,5 +1,10 @@
 <template>
-  <scroll-view class="common-list" :scroll-y="true" @scroll-to-lower="loadMore">
+  <scroll-view
+    class="common-list"
+    :scroll-y="true"
+    @scroll-to-lower="loadMore"
+    enable-flex
+  >
     <slot name="header"></slot>
     <view class="common-list-container">
       <view v-for="(item, index) in items" :key="index">

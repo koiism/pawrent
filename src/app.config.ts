@@ -16,5 +16,5 @@ export default defineAppConfig({
     },
   },
   requiredPrivateInfos: ['chooseLocation', 'getLocation'],
-  lazyCodeLoading: 'requiredComponents'
+  lazyCodeLoading: 'requiredComponents',
 });

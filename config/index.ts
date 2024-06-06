@@ -33,7 +33,6 @@ const config = {
     '@tarojs/plugin-mock',
     '@tarojs/plugin-vue-devtools',
     '@taro-hooks/plugin-vue',
-    '@tarojs/plugin-http',
   ],
   defineConstants: {},
   copy: {

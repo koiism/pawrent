@@ -131,7 +131,7 @@ const { sitterInfo } = storeToRefs(sitterInfoStore);
     &-sitter {
       display: flex;
       gap: 10px;
-      font-size: 28px;
+      font-size: 32px;
 
       &-name {
         font-weight: bold;
@@ -144,7 +144,7 @@ const { sitterInfo } = storeToRefs(sitterInfoStore);
     }
 
     &-distance {
-      font-size: 24px;
+      font-size: 28px;
     }
   }
 
@@ -153,12 +153,12 @@ const { sitterInfo } = storeToRefs(sitterInfoStore);
     justify-content: space-between;
 
     &-time {
-      font-size: 24px;
+      font-size: 28px;
       color: var(--app-sub-title-color);
     }
 
     &-serve {
-      font-size: 24px;
+      font-size: 28px;
       color: var(--app-sub-title-color);
       display: flex;
       align-items: center;

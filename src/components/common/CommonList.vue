@@ -98,7 +98,7 @@ const gap = computed(() => `${props.gap}rpx`);
   }
 
   .bottom {
-    font-size: 24px;
+    font-size: 28px;
     color: var(--app-sub-title-color);
     text-align: center;
   }

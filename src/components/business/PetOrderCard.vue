@@ -77,7 +77,7 @@ defineOptions({
     &-order {
       display: flex;
       gap: 10px;
-      font-size: 28px;
+      font-size: 32px;
       min-width: 0;
 
       &-name {
@@ -90,7 +90,7 @@ defineOptions({
 
     &-distance {
       flex: none;
-      font-size: 24px;
+      font-size: 28px;
     }
   }
 
@@ -102,7 +102,7 @@ defineOptions({
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      font-size: 24px;
+      font-size: 28px;
       color: var(--app-sub-title-color);
     }
 
@@ -113,7 +113,7 @@ defineOptions({
       gap: 20px;
 
       &-pet-num {
-        font-size: 24px;
+        font-size: 28px;
         color: var(--app-sub-title-color);
         display: flex;
         align-items: center;

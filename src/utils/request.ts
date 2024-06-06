@@ -1,18 +1,18 @@
-import axios, {  AxiosResponse } from 'taro-axios';
+import axios, { AxiosResponse } from 'taro-axios';
 import { useUserStore } from '@/stores/user';
 import { useLocationStore } from '@/stores/location';
 
 interface AxiosInterceptorManager<V> {
   use<T = V>(
     onFulfilled?: (value: V) => T | Promise<T>,
-    onRejected?: (error: any) => any,
+    onRejected?: (error: any) => any
   ): number;
   eject(id: number): void;
   clear(): void;
 }
 
 const request = axios.create({
-  baseURL: 'http://127.0.0.1:9527',
+  baseURL: 'http://8.140.27.125:8000',
 });
 
 request.interceptors.request.use(async (config) => {

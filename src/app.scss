@@ -2,6 +2,7 @@
 page {
   --app-title-color: #1c140d;
   --app-sub-title-color: #96734f;
+  --app-font-size: 32px;
   // card
   --app-card-bg: #ffffff;
   --app-card-border-color: #f5ede8;
@@ -19,6 +20,7 @@ page {
   --nut-tag-default-color: var(--app-title-color);
   --nut-tag-primary-background-color: var(--nut-button-info-background-color);
 
+  font-size: var(--app-font-size);
   background-color: var(--app-bg);
   color: var(--app-sub-title-color);
   .nut-button {

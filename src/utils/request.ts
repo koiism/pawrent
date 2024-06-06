@@ -12,7 +12,7 @@ interface AxiosInterceptorManager<V> {
 }
 
 const request = axios.create({
-  baseURL: 'http://8.140.27.125:8000',
+  baseURL: 'https://koiism.cn:8000',
 });
 
 request.interceptors.request.use(async (config) => {

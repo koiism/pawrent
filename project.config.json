@@ -5,6 +5,7 @@
   "appid": "wxa32e349ec0144dd5",
   "setting": {
     "urlCheck": false,
+    "bigPackageSizeSupport": true,
     "es6": false,
     "enhance": false,
     "compileHotReLoad": false,

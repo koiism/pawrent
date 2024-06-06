@@ -1,5 +1,5 @@
 <template>
-  <view class="location-selector">{{ model.name }}</view>
+  <view class="location-selector" v-if="model.name">{{ model.name }}</view>
   <nut-button
     type="info"
     shape="circle"
@@ -44,5 +44,6 @@ export { locationValidator };
 <style lang="scss">
 .location-selector {
   color: var(--app-title-color);
+  margin-bottom: 10px;
 }
 </style>

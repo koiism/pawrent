@@ -1,73 +1,75 @@
 <template>
-  <nut-popup
-    v-model:visible="visible"
-    position="bottom"
-    round
-    pop-class="popup-order-form"
-  >
-    <view class="popup-order-form-layout">
-      <nut-form
-        class="popup-order-form-content"
-        :model-value="formData"
-        ref="formRef"
-        star-position="right"
-        :rules="formRules"
-      >
-        <nut-form-item label="位置" prop="location" required>
-          <location-selector v-model="formData.location">
-            选择宠物位置
-          </location-selector>
-        </nut-form-item>
-        <nut-form-item label="猫的数量" prop="catNum">
-          <nut-input-number
-            v-model.number="formData.catNum"
-            :min="0"
-            :max="9"
-          />
-        </nut-form-item>
-        <nut-form-item label="狗的数量" prop="dogNum">
-          <nut-input-number
-            v-model.number="formData.dogNum"
-            :min="0"
-            :max="9"
-          />
-        </nut-form-item>
-        <nut-form-item label="代管时间" prop="orderTime" required>
-          <custom-wrapper>
-            <nut-input
-              v-model="formData.orderTime"
-              placeholder="请输入需要代管的时间"
-              type="text"
-            />
-          </custom-wrapper>
-        </nut-form-item>
-        <nut-form-item label="标签" prop="tags">
-          <tags-selector v-model="formData.tags" />
-        </nut-form-item>
-        <nut-form-item label="微信id" prop="wechatId" required>
-          <custom-wrapper>
-            <nut-input
-              v-model="formData.wechatId"
-              placeholder="请确认可以通过它联系到你"
-              type="text"
-            />
-          </custom-wrapper>
-        </nut-form-item>
-      </nut-form>
-      <view class="popup-order-form-buttons">
-        <nut-button
-          type="info"
-          shape="circle"
-          size="small"
-          @click="visible = false"
-          >取消</nut-button
+  <root-portal>
+    <nut-popup
+      v-model:visible="visible"
+      position="bottom"
+      round
+      pop-class="popup-order-form root"
+    >
+      <view class="popup-order-form-layout">
+        <nut-form
+          class="popup-order-form-content"
+          :model-value="formData"
+          ref="formRef"
+          star-position="right"
+          :rules="formRules"
         >
-        <nut-button type="primary" shape="circle" size="small" @click="submit"
-          >确定</nut-button
-        >
+          <nut-form-item label="位置" prop="location" required>
+            <location-selector v-model="formData.location">
+              选择宠物位置
+            </location-selector>
+          </nut-form-item>
+          <nut-form-item label="猫的数量" prop="catNum">
+            <nut-input-number
+              v-model.number="formData.catNum"
+              :min="0"
+              :max="9"
+            />
+          </nut-form-item>
+          <nut-form-item label="狗的数量" prop="dogNum">
+            <nut-input-number
+              v-model.number="formData.dogNum"
+              :min="0"
+              :max="9"
+            />
+          </nut-form-item>
+          <nut-form-item label="代管时间" prop="orderTime" required>
+            <custom-wrapper>
+              <nut-input
+                v-model="formData.orderTime"
+                placeholder="请输入需要代管的时间"
+                type="text"
+              />
+            </custom-wrapper>
+          </nut-form-item>
+          <nut-form-item label="标签" prop="tags">
+            <tags-selector v-model="formData.tags" />
+          </nut-form-item>
+          <nut-form-item label="微信id" prop="wechatId" required>
+            <custom-wrapper>
+              <nut-input
+                v-model="formData.wechatId"
+                placeholder="请确认可以通过它联系到你"
+                type="text"
+              />
+            </custom-wrapper>
+          </nut-form-item>
+        </nut-form>
+        <view class="popup-order-form-buttons">
+          <nut-button
+            type="info"
+            shape="circle"
+            size="small"
+            @click="visible = false"
+            >取消</nut-button
+          >
+          <nut-button type="primary" shape="circle" size="small" @click="submit"
+            >确定</nut-button
+          >
+        </view>
       </view>
-    </view>
-  </nut-popup>
+    </nut-popup>
+  </root-portal>
 </template>
 
 <script lang="ts">

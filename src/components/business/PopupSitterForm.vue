@@ -1,102 +1,104 @@
 <template>
-  <nut-popup
-    v-model:visible="visible"
-    position="bottom"
-    round
-    pop-class="popup-sitter-form"
-  >
-    <view class="popup-sitter-form-layout">
-      <nut-form
-        class="popup-sitter-form-content"
-        :model-value="formData"
-        ref="formRef"
-        star-position="right"
-        :rules="formRules"
-      >
-        <nut-form-item label="是否接单" prop="status">
-          <template #label>
-            <view class="popup-sitter-form-content-label">是否接单</view>
-          </template>
-          <custom-wrapper>
-            <nut-switch v-model="formData.status" />
-          </custom-wrapper>
-        </nut-form-item>
-        <nut-form-item label="姓名" prop="name" required>
-          <custom-wrapper>
-            <nut-input
-              v-model="formData.name"
-              placeholder="请输入姓名"
-              type="text"
-            />
-          </custom-wrapper>
-        </nut-form-item>
-        <nut-form-item label="微信id" prop="wechatId" required>
-          <custom-wrapper>
-            <nut-input
-              v-model="formData.wechatId"
-              placeholder="请确认可以通过它联系到你"
-              type="text"
-            />
-          </custom-wrapper>
-        </nut-form-item>
-        <nut-form-item label="位置" prop="location" required>
-          <location-selector v-model="formData.location">
-            选择常驻位置
-          </location-selector>
-        </nut-form-item>
-        <nut-form-item label="性别" prop="sex">
-          <nut-radio-group v-model="formData.sex" direction="horizontal">
-            <nut-radio :label="SEX.FEMALE">
-              <icon-female></icon-female>
-            </nut-radio>
-            <nut-radio :label="SEX.MALE">
-              <icon-male></icon-male>
-            </nut-radio>
-          </nut-radio-group>
-        </nut-form-item>
-        <nut-form-item label="服务对象" prop="serveDog" required>
-          <nut-checkbox v-model="formData.serveCat" shape="button"
-            >猫猫</nut-checkbox
-          >
-          <nut-checkbox v-model="formData.serveDog" shape="button"
-            >狗狗</nut-checkbox
-          >
-        </nut-form-item>
-        <nut-form-item label="服务时间" prop="workTime" required>
-          <custom-wrapper>
-            <nut-input
-              v-model="formData.workTime"
-              placeholder="请输入你可以接单的时间"
-              type="text"
-            />
-          </custom-wrapper>
-        </nut-form-item>
-        <nut-form-item label="备注" prop="detail" required>
-          <custom-wrapper>
-            <nut-textarea
-              limit-show
-              :max-length="500"
-              v-model="formData.detail"
-              placeholder="请明确表述服务细节，包括收费标准、注意事项等"
-              type="text"
-            />
-          </custom-wrapper>
-        </nut-form-item>
-      </nut-form>
-      <view class="popup-sitter-form-buttons">
-        <nut-button
-          type="info"
-          shape="circle"
-          size="small"
-          @click="visible = false"
-          >取消</nut-button
+  <root-portal :enable="true">
+    <nut-popup
+      v-model:visible="visible"
+      position="bottom"
+      round
+      pop-class="popup-sitter-form root"
+    >
+      <view class="popup-sitter-form-layout">
+        <nut-form
+          class="popup-sitter-form-content"
+          :model-value="formData"
+          ref="formRef"
+          star-position="right"
+          :rules="formRules"
         >
-        <nut-button type="primary" shape="circle" size="small" @click="submit"
-          >确定</nut-button
-        >
+          <nut-form-item label="是否接单" prop="status">
+            <template #label>
+              <view class="popup-sitter-form-content-label">是否接单</view>
+            </template>
+            <custom-wrapper>
+              <nut-switch v-model="formData.status" />
+            </custom-wrapper>
+          </nut-form-item>
+          <nut-form-item label="姓名" prop="name" required>
+            <custom-wrapper>
+              <nut-input
+                v-model="formData.name"
+                placeholder="请输入姓名"
+                type="text"
+              />
+            </custom-wrapper>
+          </nut-form-item>
+          <nut-form-item label="微信id" prop="wechatId" required>
+            <custom-wrapper>
+              <nut-input
+                v-model="formData.wechatId"
+                placeholder="请确认可以通过它联系到你"
+                type="text"
+              />
+            </custom-wrapper>
+          </nut-form-item>
+          <nut-form-item label="位置" prop="location" required>
+            <location-selector v-model="formData.location">
+              选择常驻位置
+            </location-selector>
+          </nut-form-item>
+          <nut-form-item label="性别" prop="sex">
+            <nut-radio-group v-model="formData.sex" direction="horizontal">
+              <nut-radio :label="SEX.FEMALE" :style="{ gap: '10rpx' }">
+                <icon-female></icon-female>
+              </nut-radio>
+              <nut-radio :label="SEX.MALE" :style="{ gap: '10rpx' }">
+                <icon-male></icon-male>
+              </nut-radio>
+            </nut-radio-group>
+          </nut-form-item>
+          <nut-form-item label="服务对象" prop="serveDog" required>
+            <nut-checkbox v-model="formData.serveCat" shape="button">
+              <icon-cat size="36"></icon-cat>
+            </nut-checkbox>
+            <nut-checkbox v-model="formData.serveDog" shape="button">
+              <icon-dog size="36"></icon-dog>
+            </nut-checkbox>
+          </nut-form-item>
+          <nut-form-item label="服务时间" prop="workTime" required>
+            <custom-wrapper>
+              <nut-input
+                v-model="formData.workTime"
+                placeholder="请输入你可以接单的时间"
+                type="text"
+              />
+            </custom-wrapper>
+          </nut-form-item>
+          <nut-form-item label="备注" prop="detail" required>
+            <custom-wrapper>
+              <nut-textarea
+                limit-show
+                :max-length="500"
+                v-model="formData.detail"
+                placeholder="请明确表述服务细节，包括收费标准、注意事项等"
+                type="text"
+              />
+            </custom-wrapper>
+          </nut-form-item>
+        </nut-form>
+        <view class="popup-sitter-form-buttons">
+          <nut-button
+            type="info"
+            shape="circle"
+            size="small"
+            @click="visible = false"
+            >取消</nut-button
+          >
+          <nut-button type="primary" shape="circle" size="small" @click="submit"
+            >确定</nut-button
+          >
+        </view>
       </view>
-    </view>
-  </nut-popup>
+    </nut-popup>
+  </root-portal>
 </template>
 
 <script setup lang="ts">

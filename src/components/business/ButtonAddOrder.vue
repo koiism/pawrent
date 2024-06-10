@@ -55,6 +55,7 @@ const onCompleteEdit = (id: number, data: TPetOrder) => {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: var(--app-light-title-color);
 
     &::before {
       content: '';

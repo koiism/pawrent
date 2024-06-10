@@ -109,7 +109,6 @@ const { sitterInfo } = storeToRefs(sitterInfoStore);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--app-bg);
 
     &::before {
       content: '';

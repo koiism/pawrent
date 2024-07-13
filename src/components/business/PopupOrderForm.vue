@@ -58,12 +58,12 @@
         <view class="popup-order-form-buttons">
           <nut-button
             type="info"
-            shape="circle"
+            shape="round"
             size="small"
             @click="visible = false"
             >取消</nut-button
           >
-          <nut-button type="primary" shape="circle" size="small" @click="submit"
+          <nut-button type="primary" shape="round" size="small" @click="submit"
             >确定</nut-button
           >
         </view>
@@ -91,6 +91,7 @@ export const defaultOrderData = {
 
 <script setup lang="ts">
 import { postPetOrder } from '@/api/index';
+import { CustomWrapper } from '@tarojs/components';
 import { TPetOrder } from '@/api/types/commonTypes';
 import { useLocationStore } from '@/stores/location';
 import { Form as NutForm } from '@nutui/nutui-taro';

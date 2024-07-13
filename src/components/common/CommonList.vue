@@ -39,9 +39,6 @@ const items = defineModel<IItemData[]>({
   default: () => [],
 });
 
-watch(items, () => {
-  console.log(`items`, items);
-});
 const listId = ref(`bottom-${uuid()}`);
 const isLoading = ref(false);
 const total = ref(0);

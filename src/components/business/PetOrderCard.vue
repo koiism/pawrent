@@ -1,6 +1,6 @@
 <!-- TODO: 骨架屏 -->
 <template>
-  <view class="pet-order-card card" :style="{ height: height + 'px' }">
+  <view class="pet-order-card card">
     <view class="pet-order-card-title">
       <view class="pet-order-card-title-order">
         <view class="pet-order-card-title-order-name"
@@ -56,7 +56,7 @@ interface IPropsPetOrderCard {
 }
 const props = defineProps<IPropsPetOrderCard>();
 const { data, allowEdit } = toRefs(props);
-const height = 120;
+const height = 140;
 
 defineOptions({
   height,
@@ -68,6 +68,7 @@ defineOptions({
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 10px;
 
   &-title {
     display: flex;

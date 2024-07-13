@@ -14,7 +14,7 @@ const props = withDefaults(defineProps<{ tags: string[] }>(), {
 
 <style lang="scss">
 .pet-order-card-tag {
-  max-height: 52px;
+  max-height: 58px;
   overflow: hidden;
 }
 </style>
